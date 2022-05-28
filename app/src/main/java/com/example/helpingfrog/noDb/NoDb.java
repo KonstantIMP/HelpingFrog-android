@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@RequiresApi(api = Build.VERSION_CODES.N)
 public class NoDb {
 
     private NoDb(){}

@@ -8,6 +8,7 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.helpingfrog.R;
+import com.example.helpingfrog.databinding.ActivityInfoBinding;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -24,16 +25,15 @@ public class InfoActivity extends AppCompatActivity {
     public ArrayList<String> titleList = new ArrayList<String>();
     // Listview Adapter для вывода данных
     private ArrayAdapter<String> adapter;
-    // List view
-    private ListView lv;
+
+    private ActivityInfoBinding binding = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_info);
-        // определение данных
-        lv = (ListView) findViewById(R.id.listView1);
+
+        binding = ActivityInfoBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         // запрос к нашему отдельному поток на выборку данных
         new NewThread().execute();
         // Добавляем данные для ListView
@@ -72,7 +72,7 @@ public class InfoActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             // после запроса обновляем листвью
-            lv.setAdapter(adapter);
+            binding.listView1.setAdapter(adapter);
         }
     }
 }
